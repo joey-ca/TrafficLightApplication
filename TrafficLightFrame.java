@@ -2,6 +2,13 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 
+/**
+* The controller of the TrafficLight app.
+*
+* @author Guannan Zhao
+* @version %I%, %G%
+* @since 1.0
+*/
 public class TrafficLightFrame extends JFrame implements Observer{
    
    private TrafficLight model;
@@ -13,8 +20,11 @@ public class TrafficLightFrame extends JFrame implements Observer{
       super(name);
       model = aModel;
       view = aView;
+      
+      // Replace old panel with ours
       setContentPane(view);
       
+      // Add the Listeners
       for(int i = 0; i < 3; i++){
          view.getRadioButton(i).addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -41,6 +51,7 @@ public class TrafficLightFrame extends JFrame implements Observer{
          }
       });
       
+      // Add a timer for automode. Set it to go off every 1000 milliseconds
       aTimer = new Timer(1000,new ActionListener(){
          public void actionPerformed(ActionEvent e){
             handleTimerTick();
@@ -53,11 +64,13 @@ public class TrafficLightFrame extends JFrame implements Observer{
          }
       });
       
+      // Register with the model so that when it changes, we get informed
       model.registerObserver(this);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       setSize(400,250);
    }
    
+   // The Radio Button event handler
    private void handleRadioButtonEvent(JRadioButton source){
       for(int i = 0; i < 3; i++){
          if(view.getRadioButton(i) == source)
@@ -65,14 +78,17 @@ public class TrafficLightFrame extends JFrame implements Observer{
       }
    }
    
+   // The ComboBox Selection event handler
    private void handleComboBoxEvent(JComboBox source){
       model.setState(source.getSelectedIndex()+1);
    }
-
+   
+   // The Advance Button event handler
    private void handleAdvanceButtonEvent(){
       model.advanceState();
    }
    
+   // The Auto Button event handler
    private void handleAutoButtonPress(JCheckBox source){
       if(source.isSelected())
          aTimer.start();
@@ -80,10 +96,12 @@ public class TrafficLightFrame extends JFrame implements Observer{
          aTimer.stop();
    }
    
+   // The Timer event handler
    private void handleTimerTick(){
       model.advanceTime();
    }
    
+   // The Slider event handler
    private void handleSliderEvent(JSlider source){
       if(!source.getValueIsAdjusting()){
          int delay = source.getValue();
@@ -93,6 +111,7 @@ public class TrafficLightFrame extends JFrame implements Observer{
       }
    }
    
+   // Update all relevant components according to the traffic light state
    public void update(){
       view.getActionList().removeActionListener(comboBoxListener);
       radioButtonUpdate();
@@ -123,15 +142,7 @@ public class TrafficLightFrame extends JFrame implements Observer{
    }  
    
    public static void main(String args[]){
-/*    TrafficLight aModel = new TrafficLight();
-      TrafficLightFrame frameA = new TrafficLightFrame("Traffic Light A (tied with B)", aModel, new TrafficLightPanel());
-      frameA.setVisible(true);
-      TrafficLightFrame frameB = new TrafficLightFrame("Traffic Light B (tied with A)", aModel, new TrafficLightPanel());
-      frameB.setVisible(true);
-*/
       TrafficLightFrame frameC = new TrafficLightFrame("Traffic Light C (alone)", new TrafficLight(), new TrafficLightPanel());
       frameC.setVisible(true);
-      
-      //frame.aTimer.start();
    }
 }
