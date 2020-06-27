@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
-* The only model class of the TrafficLight app.
+* The model of the TrafficLight app.
 * Making the model implement the Subject interface allows it to inform all of the observers whenever there has been a change
 *
 * @author Guannan Zhao
