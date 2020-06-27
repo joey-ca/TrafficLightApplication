@@ -1,7 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
 
+/**
+* The view class of the TrafficLight app.
+*
+* @author Guannan Zhao
+* @version %I%, %G%
+* @since 1.0
+*/
 public class TrafficLightPanel extends JPanel{
+   
+   // These are the components
    private JRadioButton[] buttons;
    private JButton advButton;
    private JComboBox actionList;
@@ -9,6 +18,7 @@ public class TrafficLightPanel extends JPanel{
    private JSlider slider;
    private JCheckBox autoButton;
    
+   // Make some get methods so that the controller can access this view
    public JRadioButton getRadioButton(int i){return buttons[i];}   
    public JButton getAdvButton(){return advButton;}
    public JComboBox getActionList(){return actionList;}
@@ -20,7 +30,8 @@ public class TrafficLightPanel extends JPanel{
       GridBagLayout layout = new GridBagLayout();
       GridBagConstraints constraints = new GridBagConstraints();
       setLayout(layout);
-            
+      
+      // Add all the labels
       JLabel label1 = new JLabel("Manual");
       constraints.gridx = 0;
       constraints.gridy = 0;
@@ -73,6 +84,7 @@ public class TrafficLightPanel extends JPanel{
       layout.setConstraints(label4,constraints);
       add(label4); 
       
+      // Add the Radio Buttons
       JPanel aPanel = new JPanel(); 
       aPanel.setLayout(new BoxLayout(aPanel,BoxLayout.Y_AXIS));
       aPanel.setBackground(Color.black); 
@@ -104,6 +116,7 @@ public class TrafficLightPanel extends JPanel{
       layout.setConstraints(aPanel,constraints);
       add(aPanel);
       
+      // Make the Actions List
       String[] list = {"Stop","Yield","Go"}; 
       actionList = new JComboBox(list);
       constraints.gridx = 1;
@@ -117,7 +130,8 @@ public class TrafficLightPanel extends JPanel{
       constraints.insets = new Insets(5,0,0,0);
       layout.setConstraints(actionList,constraints);
       add(actionList);
-
+      
+      // Add the auto checkbox button
       autoButton = new JCheckBox("Auto Advance");
       constraints.gridx = 1;
       constraints.gridy = 2;
@@ -131,6 +145,7 @@ public class TrafficLightPanel extends JPanel{
       layout.setConstraints(autoButton,constraints);
       add(autoButton);
       
+      // Make the Slider
       slider = new JSlider(JSlider.HORIZONTAL,0,20,0);
       slider.setMajorTickSpacing(5);
       slider.setMinorTickSpacing(1);
@@ -148,6 +163,7 @@ public class TrafficLightPanel extends JPanel{
       layout.setConstraints(slider,constraints);
       add(slider);
       
+      // Add the Advance Picture button
       advButton = new JButton(new ImageIcon("traffic-lights-red.jpg"));
       constraints.gridx = 2;
       constraints.gridy = 1;
@@ -160,7 +176,8 @@ public class TrafficLightPanel extends JPanel{
       constraints.insets = new Insets(5,2,0,5);
       layout.setConstraints(advButton,constraints);
       add(advButton);
-            
+      
+      // Add the progress bar
       progressBar = new JProgressBar(JProgressBar.HORIZONTAL,0,6);      
       constraints.gridx = 0;
       constraints.gridy = 5;
