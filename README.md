@@ -1,1 +1,1 @@
-TrafficLight Application is a desktop app, which simulates the working status of traffic light and allows the user to adjust the speed of the time advance feature
+TrafficLight Application is a desktop app, which simulates the working status of traffic light and allows user to manipulate, e.g., start, pause, advance the state and adjust the speed of time advance
