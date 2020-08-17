@@ -1,1 +1,1 @@
-TrafficLight Application is a desktop app, which simulates the working status of traffic light and allows user to manipulate, e.g., start, pause, advance the state and adjust the speed of time advance
+TrafficLight Application is a desktop app, which simulates the working status of traffic light and allows user to manipulate, e.g., start, pause, advance the state and adjust the speed of time advance. The app is developed in Java with Swing based UIs and designed completely in accordance with MVC architecture pattern
